@@ -86,6 +86,10 @@ Writing methods
 * `uint32(data)` - unsigned, little endian 32 bit integer
 * `uint32le(data)` - unsigned, little endian 32 bit integer
 * `uint32be(data)` - unsigned, big endian 32 bit integer
+* `floatbe(data)` - big endian 32 bit float
+* `floatle(data)` - little endian 32 bit float
+* `doublebe(data)` - big endian 64 bit double
+* `doublele(data)` - little endian 64 bit double
 
 License
 -------
