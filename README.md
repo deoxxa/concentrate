@@ -10,6 +10,8 @@ Concentrate allows you to efficiently create buffers by chaining together calls
 to write numbers, strings and even other buffers! Concentrate is also easily
 extendable so you can implement your own custom types.
 
+If you want to parse binary data, might I suggest [dissolve](https://github.com/deoxxa/dissolve)?
+
 Features
 --------
 
