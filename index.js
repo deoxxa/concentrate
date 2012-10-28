@@ -70,3 +70,22 @@ Concentrate.prototype.string = function string(data, encoding) {
     });
   });
 });
+
+[["float", 4], ["double", 8]].forEach(function(t) {
+  ["le", "be"].forEach(function(e) {
+    var type = [t[0], e].join(""),
+        method = ["write", t[0].replace(/^(.)/, function(e) { return e.toUpperCase(); }), e.toUpperCase()].join(""),
+        length = t[1];
+
+    Concentrate.prototype[type] = function(data) {
+      this.jobs.push({
+        type: "number",
+        method: method,
+        length: length,
+        data: data,
+      });
+
+      return this;
+    };
+  });
+});
