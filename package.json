@@ -1,6 +1,6 @@
 {
   "name": "concentrate",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Produce binary data with a neat DSL",
   "main": "index.js",
   "dependencies": {},
