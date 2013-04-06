@@ -25,6 +25,13 @@ Concentrate.prototype.reset = function reset() {
 };
 
 Concentrate.prototype.result = function result() {
+  // optimisation for if there's only one job and it's a buffer - we don't need
+  // to compile anything, we can just shove the buffer right on through. keep on
+  // truckin'.
+  if (this.jobs.length === 1 && this.jobs[0].type === "buffer") {
+    return this.jobs[0].data;
+  }
+
   var buffer = new Buffer(this.jobs.reduce(function(i, v) { return i + v.length; }, 0));
 
   var offset = 0;
