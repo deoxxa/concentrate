@@ -102,6 +102,7 @@ Execution Methods
 * `result()` - compiles the job list into a buffer and returns that buffer
 * `flush()` - compiles the current job list, emits it via the stream API, then
   clears the current job list
+* `end()` - ends the stream part of Concentrate (basically makes it emit "end")
 
 Writing methods
 ---------------
