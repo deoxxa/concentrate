@@ -20,6 +20,8 @@ Features
   methods
 * Fast and reliable operation through lazy compilation of results
 * Tiny (<150 LoC) implementation, allowing for easy debugging
+* Stream interface with explicit flushing for maximum speeeeeeed (inspired by
+  felixge, so you know it's good!)
 
 Installation
 ------------
@@ -48,6 +50,43 @@ var data = Concentrate().uint8(1).uint8(2).uint32be(555).string("hi there", "utf
 console.log(data);
 ```
 
+```
+<Buffer 01 02 00 00 02 2b 68 69 20 74 68 65 72 65 40 06 66 66 40 00 cc cc cc cc cc cd>
+```
+
+Oh look! Streams! Also see [example-stream.js](https://github.com/deoxxa/concentrate/blob/master/example-stream.js).
+
+```javascript
+#!/usr/bin/env node
+
+var Concentrate = require("./index");
+
+var c = Concentrate();
+
+c.on("end", function() {
+  console.log("ended");
+});
+
+c.on("readable", function() {
+  var e;
+  while (e = c.read()) {
+    console.log(e);
+  }
+});
+
+c.uint8(1).uint8(2).uint32be(555).string("hi there", "utf8").floatbe(2.1).doublebe(2.1).flush();
+c.uint8(5).uint8(6);
+c.uint8(7);
+c.uint8(30);
+c.flush().end();
+```
+
+```
+<Buffer 01 02 00 00 02 2b 68 69 20 74 68 65 72 65 40 06 66 66 40 00 cc cc cc cc cc cd>
+<Buffer 05 06 07 1e>
+ended
+```
+
 Methods
 -------
 
@@ -61,6 +100,8 @@ Execution Methods
   state of the current job list
 * `reset()` - resets the job list
 * `result()` - compiles the job list into a buffer and returns that buffer
+* `flush()` - compiles the current job list, emits it via the stream API, then
+  clears the current job list
 
 Writing methods
 ---------------
