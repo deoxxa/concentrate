@@ -1,8 +1,16 @@
-var Concentrate = module.exports = function Concentrate() {
-  if (!(this instanceof Concentrate)) { return new Concentrate(); }
+var stream = require("stream"),
+    util = require("util");
+
+var Concentrate = module.exports = function Concentrate(options) {
+  if (!(this instanceof Concentrate)) { return new Concentrate(options); }
+
+  stream.Readable.call(this, options);
 
   this.jobs = [];
 };
+util.inherits(Concentrate, stream.Readable);
+
+Concentrate.prototype._read = function _read(n) {};
 
 Concentrate.prototype.copy = function copy() {
   var copy = new Concentrate();
@@ -29,6 +37,19 @@ Concentrate.prototype.result = function result() {
   }.bind(this));
 
   return buffer;
+};
+
+Concentrate.prototype.flush = function flush(no_reset) {
+  this.push(this.result());
+  this.reset();
+
+  return this;
+};
+
+Concentrate.prototype.end = function end() {
+  this.push(null);
+
+  return this;
 };
 
 Concentrate.prototype.write_number = function write_number(job, buffer, offset) {
