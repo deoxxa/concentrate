@@ -19,7 +19,7 @@ Features
   variants using fast, built-in [Buffer](http://nodejs.org/docs/latest/api/buffer.html)
   methods
 * Fast and reliable operation through lazy compilation of results
-* Tiny (<100 LoC) implementation, allowing for easy debugging
+* Tiny (<150 LoC) implementation, allowing for easy debugging
 
 Installation
 ------------
