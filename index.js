@@ -92,7 +92,7 @@ Concentrate.prototype.string = function string(data, encoding) {
       var type = [s, "int", b, e].join(""),
           method = ["write", s.toUpperCase(), "Int", b, endiannes.toUpperCase()].join(""),
           length = b / 8;
-          
+
       Concentrate.prototype[type] = function(data) {
         this.jobs.push({
           type: "number",
@@ -112,7 +112,7 @@ Concentrate.prototype.string = function string(data, encoding) {
     var type = [t[0], e].join(""),
         method = ["write", t[0].replace(/^(.)/, function(e) { return e.toUpperCase(); }), e.toUpperCase()].join(""),
         length = t[1];
-        
+
     Concentrate.prototype[type] = function(data) {
       this.jobs.push({
         type: "number",
