@@ -81,10 +81,18 @@ Concentrate.prototype.string = function string(data, encoding) {
 [8, 16, 32].forEach(function(b) {
   ["", "u"].forEach(function(s) {
     ["", "le", "be"].forEach(function(e) {
+      // derive endiannes postfix supported by node Buffer api
+      // for all the numbers, except 8 bit integer, endiannes is mandatory
+      var endiannes = e || "le";
+      // for 8 bit integers - no endiannes postfix
+      if(b === 8){
+          endiannes = "";
+      }
+      
       var type = [s, "int", b, e].join(""),
-          method = ["write", s.toUpperCase(), "Int", b, e.toUpperCase()].join(""),
+          method = ["write", s.toUpperCase(), "Int", b, endiannes.toUpperCase()].join(""),
           length = b / 8;
-
+          
       Concentrate.prototype[type] = function(data) {
         this.jobs.push({
           type: "number",
@@ -104,7 +112,7 @@ Concentrate.prototype.string = function string(data, encoding) {
     var type = [t[0], e].join(""),
         method = ["write", t[0].replace(/^(.)/, function(e) { return e.toUpperCase(); }), e.toUpperCase()].join(""),
         length = t[1];
-
+        
     Concentrate.prototype[type] = function(data) {
       this.jobs.push({
         type: "number",
