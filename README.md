@@ -110,23 +110,16 @@ Writing methods
 * `buffer(data)`
 * `string(data, encoding)` - write a string with the given encoding
 * `int8(data)` - signed 8 bit integer
-* `sint8(data)` - signed 8 bit integer
 * `uint8(data)` - unsigned 8 bit integer
 * `int16(data)` - signed, little endian 16 bit integer
 * `int16le(data)` - signed, little endian 16 bit integer
 * `int16be(data)` - signed, big endian 16 bit integer
-* `sint16(data)` - signed, little endian 16 bit integer
-* `sint16le(data)` - signed, little endian 16 bit integer
-* `sint16be(data)` - signed, big endian 16 bit integer
 * `uint16(data)` - unsigned, little endian 16 bit integer
 * `uint16le(data)` - unsigned, little endian 16 bit integer
 * `uint16be(data)` - unsigned, big endian 16 bit integer
 * `int32(data)` - signed, little endian 32 bit integer
 * `int32le(data)` - signed, little endian 32 bit integer
 * `int32be(data)` - signed, big endian 32 bit integer
-* `sint32(data)` - signed, little endian 32 bit integer
-* `sint32le(data)` - signed, little endian 32 bit integer
-* `sint32be(data)` - signed, big endian 32 bit integer
 * `uint32(data)` - unsigned, little endian 32 bit integer
 * `uint32le(data)` - unsigned, little endian 32 bit integer
 * `uint32be(data)` - unsigned, big endian 32 bit integer
